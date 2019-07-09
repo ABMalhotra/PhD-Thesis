@@ -1,0 +1,135 @@
+%% Define your committee members. If you have less than 6, simple delete/comment the unused lines
+
+\newcommand{\committeeMemberOne}{Dr. Martin Maldovan, Advisor}
+\newcommand{\committeeMemberOneDepartment}{School of Chemical \& Biomolecular Engineering \newline School of Physics}
+\newcommand{\committeeMemberOneAffiliation}{Georgia Institute of Technology}
+
+\newcommand{\committeeMemberTwo}{Dr. David S. Sholl}
+\newcommand{\committeeMemberTwoDepartment}{School of Chemical \& Biomolecular Engineering}
+\newcommand{\committeeMemberTwoAffiliation}{Georgia Institute of Technology}
+
+\newcommand{\committeeMemberThree}{Dr. Elsa Reichmanis}
+\newcommand{\committeeMemberThreeDepartment}{School of Chemical \& Biomolecular Engineering}
+\newcommand{\committeeMemberThreeAffiliation}{Georgia Institute of Technology}
+
+\newcommand{\committeeMemberFour}{Dr. Michael A. Filler}
+\newcommand{\committeeMemberFourDepartment}{School of Chemical \& Biomolecular Engineering}
+\newcommand{\committeeMemberFourAffiliation}{Georgia Institute of Technology}
+
+\newcommand{\committeeMemberFive}{Dr. Zhuomin Zhang}
+\newcommand{\committeeMemberFiveDepartment}{George W. Woodruff School of Mechanical Engineering}
+\newcommand{\committeeMemberFiveAffiliation}{Georgia Institute of Technology}
+
+\newcommand{\approvalDay}{08}
+\newcommand{\approvalMonth}{July}
+\newcommand{\approvalYear}{2019}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not edit these lines unless you wish to customize
+% the template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{titlepage}
+\begin{singlespacing}
+\begin{center}
+
+\textbf{\MakeUppercase{\thesisTitle}}\\
+\vspace{10\baselineskip}
+
+\end{center}
+\vfill
+
+%Define minipages, depending on how many authors there are
+\ifdefined\committeeMemberFour
+
+Approved by:
+\vspace{2\baselineskip}		%adjust the number in front of "\baselineskip" for alignment
+
+\begin{minipage}[b]{0.41\textwidth}
+	
+	\committeeMemberOne\\
+	\committeeMemberOneDepartment\\
+	\textit{\committeeMemberOneAffiliation}\\
+	
+	\committeeMemberTwo\\
+	\committeeMemberTwoDepartment\\
+	\textit{\committeeMemberTwoAffiliation}\\
+	
+	\committeeMemberThree\\
+	\committeeMemberThreeDepartment\\
+	\textit{\committeeMemberThreeAffiliation}\\
+	
+	\vspace{0\baselineskip}		%adjust the number in front of "\baselineskip" for alignment
+	
+\end{minipage}
+\hspace{0.1\textwidth}
+\begin{minipage}[b]{0.41\textwidth}
+	
+	\committeeMemberFour\\
+	\committeeMemberFourDepartment\\
+	\textit{\committeeMemberFourAffiliation}\\
+	\vskip 1\baselineskip       %I added
+	
+	\ifdefined\committeeMemberSix
+	\committeeMemberFive\\
+	\committeeMemberFiveDepartment\\
+	\textit{\committeeMemberFiveAffiliation}\\
+	
+	\committeeMemberSix\\
+	\committeeMemberSixDepartment\\
+	\textit{\committeeMemberSixAffiliation}\\
+	%REDUNDDANT
+	\vspace{-4\baselineskip}    
+	Date Approved: \approvalMonth{} \approvalDay, \approvalYear
+	\vspace{3\baselineskip}		%adjust the number in front of "\baselineskip" for alignment
+	
+	\else
+	%-------MY OPERATION HERE
+	\committeeMemberFive\\
+	\committeeMemberFiveDepartment\\
+	\textit{\committeeMemberFiveAffiliation}\\
+	\vskip -1\baselineskip
+	\leavevmode
+	\\ \\ \\ \\ \\ \\ Date Approved: \approvalMonth{} \approvalDay, \approvalYear
+	\vspace{-1.2\baselineskip}		%adjust the number in front of "\baselineskip" for alignment
+	
+	\fi
+	
+\end{minipage}
+
+\else
+
+\hspace{0.6\textwidth}
+\begin{minipage}[b]{0.4\textwidth}
+	
+	Approved by:
+	\vspace{2\baselineskip}		%adjust the number in front of "\baselineskip" for alignment
+	
+	\committeeMemberOne\\
+	\committeeMemberOneDepartment\\
+	\textit{\committeeMemberOneAffiliation}\\
+	
+	\committeeMemberTwo\\
+	\committeeMemberTwoDepartment\\
+	\textit{\committeeMemberTwoAffiliation}\\
+	
+	\committeeMemberThree\\
+	\committeeMemberThreeDepartment\\
+	\textit{\committeeMemberThreeAffiliation}\\
+	
+	\vspace{2\baselineskip}		%adjust the number in front of "\baselineskip" for alignment
+	
+	Date Approved: \approvalMonth{} \approvalDay, \approvalYear
+	\vspace{\baselineskip}		%adjust the number in front of "\baselineskip" for alignment
+	
+\end{minipage}
+
+\fi
+
+
+
+
+
+\end{singlespacing}
+\end{titlepage}

@@ -1,0 +1,319 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document type, global settings, and packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{report}   %12 point font for Times New Roman
+\usepackage{graphicx}  %for images and plots
+\usepackage[letterpaper, left=1.5in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{setspace}  %use this package to set linespacing as desired
+\usepackage{times}  %set Times New Roman as the font
+\usepackage[explicit]{titlesec}  %title control and formatting
+\usepackage[titles]{tocloft}  %table of contents control and formatting
+\usepackage[backend=bibtex, style=numeric-comp,sortcites=true,sorting=none, bibstyle=nature]{biblatex}  %reference manager
+\usepackage[bookmarks=true, hidelinks]{hyperref}
+	%\renewcommand{\chapterautorefname}{Chapter} %Make chapter-->Chapter
+
+\usepackage{booktabs} %for tables lines
+\usepackage[page]{appendix}  %for appendices
+\usepackage{rotating}  %for rotated, landscape images
+\usepackage[normalem]{ulem}  %for italicized text
+\usepackage{epigraph}
+\usepackage{amsmath, amsthm, amssymb, amsfonts} %Math libraries
+\renewcommand{\vec}[1]{\mathbf{#1}} %Vector bold
+\DeclareMathOperator{\erf}{erf}    %erf
+
+
+\usepackage[font=small,labelfont=bf]{caption} %Caption control
+\usepackage{siunitx}       %SI Units
+\usepackage[symbols,nogroupskip,nonumberlist,stylemods,style=index]{glossaries-extra} %Glossary
+\usepackage{indentfirst} %Indents first para after chapter and section
+\usepackage[hang, flushmargin, bottom]{footmisc} %Footnote at bottom only
+%Footnote with no marker
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+\usepackage[nameinlink]{cleveref} %CleverCrossRef
+\crefname{appendix}{Appendix}{Appendices} %Creating appendix reference
+
+
+\usepackage[textcolor=black,figwidth=0.5\linewidth,disable]{todonotes} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Notes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %Notes for writing to disable \usepackage[disable]{todonotes}
+\reversemarginpar
+\makeatletter
+\renewcommand{\todo}[2][]{%
+    \@todo[caption={#2}, #1]{\begin{spacing}{0.5}#2\end{spacing}}%
+} 
+\makeatother 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossary
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setlength{\glsdescwidth}{15cm}
+%\newglossary[slg]{symbolslist}{syi}{syg}{Symbolslist} % create add. symbolslist
+%\glsaddkey{unit}{\glsentrytext{\glslabel}}{\glsentryunit}{\GLsentryunit}{\glsunit}{\Glsunit}{\GLSunit}
+%\glssetnoexpandfield{unit}
+\makeglossaries                                   % activate glossaries-package
+\loadglsentries{glossary}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Add your bibliography file here
+\bibliography{references/HeatLibrary-newUU.bib}
+
+%Add your graphics path here
+\graphicspath{{figures/}}
+
+% prevent certain fields in references from printing in bibliography
+\AtEveryBibitem{\clearfield{issn}}
+\AtEveryBibitem{\clearlist{issn}}
+
+\AtEveryBibitem{\clearfield{language}}
+\AtEveryBibitem{\clearlist{language}}
+
+\AtEveryBibitem{\clearfield{doi}}
+\AtEveryBibitem{\clearlist{doi}}
+
+\AtEveryBibitem{\clearfield{url}}
+\AtEveryBibitem{\clearlist{url}}
+
+\AtEveryBibitem{\clearfield{issue}}
+\AtEveryBibitem{\clearlist{issue}}
+
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryBibitem{\clearlist{month}}
+
+\AtEveryBibitem{%
+	\ifentrytype{online}
+	{}
+	{\clearfield{urlyear}\clearfield{urlmonth}\clearfield{urlday}}}
+	
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%My Commands%%%%%%%%%
+\newcommand{\angstrom}{\textup{\AA}}
+\newcommand{\sige}[2]{Si$_{#1}$Ge$_{#2}$}
+\newcommand{\algas}[2]{Al$_{#1}$Ga$_{#2}$As}
+%\newcommand{\nm}{nm}
+\newcommand{\etal}{\textit{et al.}\ }
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Start of Document
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\doublespacing  %set line spacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{titlePage.tex}
+\currentpdfbookmark{Title Page}{titlePage}  %add PDF bookmark for this page
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Approval Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{approvalPage.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Epigraph
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{epigraph.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dedication
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{dedication.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acknowledgments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagenumbering{roman}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+\setcounter{page}{4} % set the page number appropriately based on the number of intro pages
+\setlength{\parskip}{1em}
+\input{acknowledgements.tex}
+\setlength{\parskip}{0em}
+%\addtocontents{toc}{\cftpagenumbersoff{chapter}}
+
+%\currentpdfbookmark{Acknowledgments}{acknowledgments}
+%\addtocontents{toc}{\cftpagenumberson{chapter}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Format for Table of Contents
+\renewcommand{\cftchapdotsep}{\cftdotsep}  %add dot separators
+\renewcommand{\cftchapfont}{\bfseries}  %set title font weight
+\renewcommand{\cftchappagefont}{}  %set page number font weight
+\renewcommand{\cftchappresnum}{Chapter }
+\renewcommand{\cftchapaftersnum}{:}
+\renewcommand{\cftchapnumwidth}{5em}
+\renewcommand{\cftchapafterpnum}{\vskip\baselineskip} %set correct spacing for entries in single space environment
+\renewcommand{\cftsecafterpnum}{\vskip\baselineskip}  %set correct spacing for entries in single space environment
+\renewcommand{\cftsubsecafterpnum}{\vskip\baselineskip} %set correct spacing for entries in single space environment
+\renewcommand{\cftsubsubsecafterpnum}{\vskip\baselineskip} %set correct spacing for entries in single space environment
+
+%format title font size and position (this also applys to list of figures and list of tables)
+\titleformat{\chapter}[display]
+{\normalfont\bfseries\filcenter}{\chaptertitlename\ \thechapter}{0pt}{\MakeUppercase{#1}}
+
+\renewcommand\contentsname{Table of Contents}
+
+\begin{singlespace}
+\tableofcontents
+\end{singlespace}
+
+\currentpdfbookmark{Table of Contents}{TOC}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% List of figures and tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addcontentsline{toc}{chapter}{List of Tables}
+\begin{singlespace}
+	\setlength\cftbeforetabskip{\baselineskip}  %manually set spacing between entries
+	\listoftables
+\end{singlespace}
+
+\clearpage
+
+\addcontentsline{toc}{chapter}{List of Figures}
+\begin{singlespace}
+\setlength\cftbeforefigskip{\baselineskip}  %manually set spacing between entries
+\listoffigures
+\end{singlespace}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%List of abbreviations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\addcontentsline{toc}{chapter}{List of Symbols}
+%\begin{singlespace}
+\printunsrtglossary[type=symbols, style=long3col, title={List of Symbols}]
+%\end{singlespace}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is the Summary (abstract should be separate document)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parskip}{1.0em}
+\input{summary.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Chapters
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength\epigraphwidth{8cm}
+\setlength\epigraphrule{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% formatting
+%%%%%%%%%%%%%%%%%%%%%%
+
+% resume page numbering for rest of document
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1} % set the page number appropriately
+
+% Adjust chapter title formatting
+\titleformat{\chapter}[display]
+{\normalfont\bfseries\filcenter}{\MakeUppercase\chaptertitlename\ \thechapter}{0pt}{\MakeUppercase{#1}}  %spacing between titles
+\titlespacing*{\chapter}
+  {0pt}{0pt}{30pt}	%controls vertical margins on title
+
+% Adjust section title formatting
+\titleformat{\section}{\normalfont\bfseries}{\thesection}{1em}{#1}
+
+% Adjust subsection title formatting
+\titleformat{\subsection}{\normalfont}{\uline{\thesubsection}}{0em}{\uline{\hspace{1em}#1}}
+
+% Adjust subsubsection title formatting
+\titleformat{\subsubsection}{\normalfont\itshape}{\thesubsection}{1em}{#1}
+
+%%%%%%%%%%%%%%%%
+% Chapter 1
+%%%%%%%%%%%%%%%%
+\setlength{\parskip}{0em}
+\input{chapter1.tex}
+
+%%%%%%%%%%%%%%%%
+% Chapter 2
+%%%%%%%%%%%%%%%%
+
+\input{chapter2.tex}
+
+%%%%%%%%%%%%%%%%
+% Chapter 3
+%%%%%%%%%%%%%%%%
+
+\input{chapter3.tex}
+
+%%%%%%%%%%%%%%%%
+% Chapter 4
+%%%%%%%%%%%%%%%%
+
+\input{chapter4.tex}
+
+%%%%%%%%%%%%%%%%
+% Chapter 5
+%%%%%%%%%%%%%%%%
+
+\input{chapter5.tex}
+
+%%%%%%%%%%%%%%%%
+% Chapter 6
+%%%%%%%%%%%%%%%%
+
+\input{chapter6.tex}
+
+%%%%%%%%%%%%%%%%
+% Chapter 7
+%%%%%%%%%%%%%%%%
+
+\input{chapter7.tex}
+
+
+%%%%%%%%%%%%%%%%
+% Appendices
+%%%%%%%%%%%%%%%%
+
+\input{appendix.tex}
+
+%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%
+
+\begin{singlespace}  % use single-line spacing for multi-line text within a single reference
+	\setlength\bibitemsep{\baselineskip}  %manually set separataion betwen items in bibliography to double space
+	\printbibliography[title={References}]
+\end{singlespace}
+	
+\addcontentsline{toc}{chapter}{References}  %add References section to Table of Contents
+
+%%%%%%%%%%%%%%%%
+% Vita
+% Only for PhD students
+% Masters students remove this line
+%%%%%%%%%%%%%%%%
+%\input{vita.tex}
+
+
+\end{document}
